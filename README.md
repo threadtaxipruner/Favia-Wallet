@@ -4,11 +4,6 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-32c48d" alt="License: MIT"></a>
 </div>
 
-<p align="center">
-  <img src="docs/assets/favia-dashboard.png" width="49%" alt="Favia Wallet dashboard">
-  <img src="docs/assets/favia-collect.png" width="49%" alt="Favia Wallet collectibles">
-</p>
-
 ## Application Source
 
 This repository contains the implementation of a future Electron desktop wallet with:
