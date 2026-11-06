@@ -10,7 +10,7 @@ let mainWindow: BrowserWindow | null = null;
 
 app.whenReady().then(async () => {
   const preferences = new Preferences(join(app.getPath("userData"), "preferences.json"));
-  const vault = new VaultStore(join(app.getPath("userData"), "wavel-vault.json"), safeStorage);
+  const vault = new VaultStore(join(app.getPath("userData"), "favia-vault.json"), safeStorage);
   const wallet = new WalletService(vault, preferences);
   await wallet.initialize();
 
@@ -36,7 +36,7 @@ function createWindow(): void {
     backgroundColor: "#07100e",
     show: false,
     autoHideMenuBar: true,
-    title: "Wavel Wallet",
+    title: "Favia Wallet",
     webPreferences: {
       preload: join(__dirname, "../preload/preload.js"),
       contextIsolation: true,
