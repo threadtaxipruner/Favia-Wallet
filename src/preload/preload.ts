@@ -17,4 +17,4 @@ const api: WalletApi = Object.freeze({
   broadcastTransaction: (id: string) => ipcRenderer.invoke(IPC.broadcastTransaction, id)
 });
 
-contextBridge.exposeInMainWorld("wavel", api);
+contextBridge.exposeInMainWorld("favia", api);
