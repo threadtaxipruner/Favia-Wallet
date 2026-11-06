@@ -1,6 +1,6 @@
-# Contributing To Wavel
+# Contributing To Favia
 
-Wavel currently accepts product, architecture, security, network, and implementation
+Favia currently accepts product, architecture, security, network, and implementation
 proposals. Accuracy and explicit assumptions matter more than feature count.
 
 ## Before Opening A Pull Request

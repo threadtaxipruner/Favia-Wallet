@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="docs/assets/wavel-logo.svg" width="112" alt="Wavel Wallet logo">
-  <h1>Wavel Wallet</h1>
+  <img src="docs/assets/favia-logo.svg" width="112" alt="Favia Wallet logo">
+  <h1>Favia Wallet</h1>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-32c48d" alt="License: MIT"></a>
 </div>
 
 <p align="center">
-  <img src="docs/assets/wavel-dashboard.png" width="49%" alt="Wavel Wallet dashboard">
-  <img src="docs/assets/wavel-collect.png" width="49%" alt="Wavel Wallet collectibles">
+  <img src="docs/assets/favia-dashboard.png" width="49%" alt="Favia Wallet dashboard">
+  <img src="docs/assets/favia-collect.png" width="49%" alt="Favia Wallet collectibles">
 </p>
 
 ## Application Source
@@ -101,9 +101,9 @@ docs/            Product, architecture, network, and security documents
 | Optimism | 10 | ETH | `https://mainnet.optimism.io` |
 | Polygon | 137 | POL | `https://polygon-bor-rpc.publicnode.com` |
 
-These are third-party public services, not Wavel infrastructure or endorsements.
+These are third-party public services, not Favia infrastructure or endorsements.
 
 ## License
 
-Wavel Wallet source and documentation are available under the [MIT License](LICENSE).
+Favia Wallet source and documentation are available under the [MIT License](LICENSE).
 Network names and third-party trademarks belong to their respective owners.

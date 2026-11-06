@@ -1,5 +1,5 @@
 {
-  "name": "wavel-wallet",
+  "name": "favia-wallet",
   "version": "0.1.0-beta.1",
   "private": true,
   "description": "Local-first desktop EVM wallet",
@@ -29,9 +29,9 @@
     "vitest": "3.2.4"
   },
   "build": {
-    "appId": "org.wavelwallet.desktop",
-    "productName": "Wavel Wallet",
-    "artifactName": "Wavel-Wallet-${version}-${arch}.${ext}",
+    "appId": "org.faviawallet.desktop",
+    "productName": "Favia Wallet",
+    "artifactName": "Favia-Wallet-${version}-${arch}.${ext}",
     "directories": {
       "output": "release"
     },
@@ -56,7 +56,7 @@
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": true,
       "createStartMenuShortcut": true,
-      "shortcutName": "Wavel Wallet",
+      "shortcutName": "Favia Wallet",
       "deleteAppDataOnUninstall": false
     }
   }

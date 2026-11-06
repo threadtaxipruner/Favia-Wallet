@@ -2,7 +2,7 @@
 
 ## Current Status
 
-Wavel Wallet is an unaudited beta implementation capable of signing mainnet
+Favia Wallet is an unaudited beta implementation capable of signing mainnet
 transactions. The source and unsigned Windows packaging configuration are public, but
 there has been no independent security assessment. Use only generated test fixtures
 when reporting issues and begin with small amounts if evaluating the application.
