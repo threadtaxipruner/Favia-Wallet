@@ -77,7 +77,7 @@ documented emergency release process.
 - No software wallet can protect keys from a fully compromised host while unlocked.
 - Transaction simulation can be stale, censored, or inconsistent with execution.
 - Fiat prices and token metadata are informational and may be incorrect.
-- Self-custody means Wavel cannot recover a lost phrase or forgotten vault password.
+- Self-custody means Favia cannot recover a lost phrase or forgotten vault password.
 - Unsupported chains and contracts may not be decoded safely.
 
 ## Security Release Gate

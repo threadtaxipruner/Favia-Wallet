@@ -2,7 +2,7 @@
 
 ## Product Definition
 
-Wavel Wallet is a proposed self-custody desktop application for Windows and macOS.
+Favia Wallet is a proposed self-custody desktop application for Windows and macOS.
 It should let users create or restore accounts, understand their multichain portfolio,
 receive and send assets, inspect activity, connect to dApps, and review transactions
 without surrendering control of private keys.
@@ -44,7 +44,7 @@ releases, custom RPC endpoints, and access to raw transaction details.
 2. Validate word count and checksum without transmitting words.
 3. Let the user select known derivation paths or perform local discovery.
 4. Show discovered public accounts before persisting the encrypted vault.
-5. Never reveal whether a phrase has funds to a Wavel-controlled service.
+5. Never reveal whether a phrase has funds to a Favia-controlled service.
 
 ### Receive assets
 
@@ -102,7 +102,7 @@ releases, custom RPC endpoints, and access to raw transaction details.
 ## Non-Goals For The First Release
 
 - Running full nodes inside the application
-- Custody, account recovery by Wavel, or password resets
+- Custody, account recovery by Favia, or password resets
 - Leveraged trading, lending, bridges, or cross-chain swaps
 - Browser extension support
 - Mobile applications
