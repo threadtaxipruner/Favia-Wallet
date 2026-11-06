@@ -19,8 +19,8 @@ void initialize();
 
 async function initialize(): Promise<void> {
   try {
-    status = await window.wavel.status();
-    networks = await window.wavel.networks();
+    status = await window.favia.status();
+    networks = await window.favia.networks();
     if (!status.locked) await refreshDashboard();
     render();
     scheduleRefresh();
@@ -65,9 +65,9 @@ function renderOnboarding(): void {
     if (password !== String(data.get("confirm") ?? "")) return showError("Passwords do not match.");
     await busy(form, async () => {
       if (importing) {
-        status = await window.wavel.import(String(data.get("mnemonic") ?? ""), password);
+        status = await window.favia.import(String(data.get("mnemonic") ?? ""), password);
       } else {
-        const created = await window.wavel.create(password);
+        const created = await window.favia.create(password);
         status = created.status;
         recoveryPhrase = created.mnemonic;
       }
@@ -83,7 +83,7 @@ function renderOnboarding(): void {
 function renderRecoveryPhrase(): void {
   const shell = element("main", "onboarding");
   const card = element("section", "card phrase-card");
-  card.append(brand(), heading("Write down your recovery phrase", "This is the only time Wavel displays it. Anyone with these words can control your wallet."));
+  card.append(brand(), heading("Write down your recovery phrase", "This is the only time Favia displays it. Anyone with these words can control your wallet."));
   const words = element("ol", "phrase-grid");
   recoveryPhrase?.split(" ").forEach((word) => {
     const item = document.createElement("li");
@@ -94,7 +94,7 @@ function renderRecoveryPhrase(): void {
   confirm.className = "check";
   const checkbox = document.createElement("input");
   checkbox.type = "checkbox";
-  confirm.append(checkbox, document.createTextNode(" I stored these words offline and understand they cannot be recovered by Wavel."));
+  confirm.append(checkbox, document.createTextNode(" I stored these words offline and understand they cannot be recovered by Favia."));
   const continueButton = button("I have saved it", "primary");
   continueButton.disabled = true;
   checkbox.addEventListener("change", () => { continueButton.disabled = !checkbox.checked; });
@@ -116,7 +116,7 @@ function renderUnlock(): void {
     event.preventDefault();
     clearMessages();
     await busy(form, async () => {
-      status = await window.wavel.unlock(String(new FormData(form).get("password") ?? ""));
+      status = await window.favia.unlock(String(new FormData(form).get("password") ?? ""));
       await refreshDashboard();
       render();
     });
@@ -136,7 +136,7 @@ function renderWallet(): void {
     nav.append(item);
   }
   const lockButton = button("Lock wallet", "lock-button");
-  lockButton.addEventListener("click", async () => { status = await window.wavel.lock(); dashboard = undefined; render(); });
+  lockButton.addEventListener("click", async () => { status = await window.favia.lock(); dashboard = undefined; render(); });
   sidebar.append(nav, lockButton);
 
   const content = element("main", "content");
@@ -152,7 +152,7 @@ function renderWallet(): void {
   }
   networkSelect.addEventListener("change", async () => {
     try {
-      status = await window.wavel.setNetwork(networkSelect.value as NetworkId);
+      status = await window.favia.setNetwork(networkSelect.value as NetworkId);
       await refreshDashboard();
       clearMessages();
     } catch (cause) { error = friendlyError(cause); }
@@ -192,7 +192,7 @@ function renderReceive(): HTMLElement {
   card.append(element("span", "eyebrow", "Your EVM address"), element("code", "full-address", status.address));
   const copy = button("Copy address", "primary");
   copy.addEventListener("click", () => void copyAddress());
-  card.append(copy, element("p", "caution", `Only send assets supported on ${status.network.name}. Wavel currently displays native balances only.`));
+  card.append(copy, element("p", "caution", `Only send assets supported on ${status.network.name}. Favia currently displays native balances only.`));
   section.append(card);
   return section;
 }
@@ -212,7 +212,7 @@ function renderSend(): HTMLElement {
     confirm.addEventListener("click", async () => {
       clearMessages();
       await busy(confirm, async () => {
-        const result = await window.wavel.broadcastTransaction(prepared!.id);
+        const result = await window.favia.broadcastTransaction(prepared!.id);
         prepared = undefined;
         notice = `Broadcast ${result.hash}`;
         await refreshDashboard();
@@ -232,7 +232,7 @@ function renderSend(): HTMLElement {
     clearMessages();
     const data = new FormData(form);
     await busy(form, async () => {
-      prepared = await window.wavel.prepareTransaction(String(data.get("to") ?? ""), String(data.get("amount") ?? ""));
+      prepared = await window.favia.prepareTransaction(String(data.get("to") ?? ""), String(data.get("amount") ?? ""));
       render();
     });
   });
@@ -253,7 +253,7 @@ function renderSettings(): HTMLElement {
   lockForm.addEventListener("submit", async (event) => {
     event.preventDefault();
     await busy(lockForm, async () => {
-      status = await window.wavel.setAutoLock(Number(new FormData(lockForm).get("minutes")));
+      status = await window.favia.setAutoLock(Number(new FormData(lockForm).get("minutes")));
       notice = "Auto-lock updated.";
       render();
     });
@@ -281,24 +281,24 @@ function renderSettings(): HTMLElement {
     event.preventDefault();
     clearMessages();
     await busy(rpcForm, async () => {
-      await window.wavel.setRpcUrl(rpcNetwork.value as NetworkId, rpcInput.value);
-      networks = await window.wavel.networks();
-      status = await window.wavel.status();
+      await window.favia.setRpcUrl(rpcNetwork.value as NetworkId, rpcInput.value);
+      networks = await window.favia.networks();
+      status = await window.favia.status();
       if (rpcNetwork.value === status.network.id) await refreshDashboard();
       notice = "RPC chain identity verified and saved.";
       render();
     });
   });
-  section.append(lockForm, rpcForm, element("p", "beta-note", "Wavel has no telemetry, update service, dApp browser, or remote application content."));
+  section.append(lockForm, rpcForm, element("p", "beta-note", "Favia has no telemetry, update service, dApp browser, or remote application content."));
   return section;
 }
 
 async function refreshDashboard(): Promise<void> {
   try {
-    dashboard = await window.wavel.dashboard();
-    status = await window.wavel.status();
+    dashboard = await window.favia.dashboard();
+    status = await window.favia.status();
   } catch (cause) {
-    const latest = await window.wavel.status();
+    const latest = await window.favia.status();
     status = latest;
     dashboard = undefined;
     if (!latest.locked) error = friendlyError(cause);
@@ -317,7 +317,7 @@ function scheduleRefresh(): void {
 function brand(): HTMLElement {
   const node = element("div", "brand");
   const mark = element("span", "mark", "W");
-  node.append(mark, element("span", "wordmark", "Wavel"));
+  node.append(mark, element("span", "wordmark", "Favia"));
   return node;
 }
 
@@ -328,7 +328,7 @@ function heading(title: string, subtitle: string): HTMLElement {
 }
 
 function securityNote(): HTMLElement {
-  return element("p", "security-note", "Keys are encrypted locally. Wavel cannot recover your password or recovery phrase.");
+  return element("p", "security-note", "Keys are encrypted locally. Favia cannot recover your password or recovery phrase.");
 }
 
 function field(labelText: string, name: string, type: string, placeholder: string, autocomplete: string): HTMLLabelElement {
@@ -400,7 +400,7 @@ async function busy(target: HTMLElement, operation: () => Promise<void>): Promis
 async function copyAddress(): Promise<void> {
   clearMessages();
   try {
-    await window.wavel.copyAddress();
+    await window.favia.copyAddress();
     notice = "Address copied. Compare it after pasting.";
   } catch {
     error = "Clipboard access failed. Select and copy the address manually.";
